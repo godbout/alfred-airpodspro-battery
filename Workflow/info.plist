@@ -165,9 +165,30 @@ the [GitHub repo](https://github.com/godbout/alfred-airpodspro-battery).</string
 			<key>variable</key>
 			<string>workflow_keyword</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>􀹫 CASE_BATTERY_LEVEL 􀲎 LEFT_BATTERY_LEVEL 􀲍 RIGHT_BATTERY_LEVEL</string>
+				<key>placeholder</key>
+				<string>􀹫 ${CASE_BATTERY_LEVEL} 􀲎 ${LEFT_BATTERY_LEVEL} 􀲍 ${RIGHT_BATTERY_LEVEL}</string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Result Title</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>result_title</string>
+		</dict>
 	</array>
 	<key>version</key>
-	<string>4.0.0</string>
+	<string>5.0.0</string>
 	<key>webaddress</key>
 	<string>https://sleeplessmind.com.mo</string>
 </dict>
