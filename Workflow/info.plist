@@ -169,7 +169,7 @@ the [GitHub repo](https://github.com/godbout/alfred-airpodspro-battery).</string
 				<key>default</key>
 				<string>􀹫 CASE_BATTERY_LEVEL 􀲎 LEFT_BATTERY_LEVEL 􀲍 RIGHT_BATTERY_LEVEL</string>
 				<key>placeholder</key>
-				<string>􀹫 ${CASE_BATTERY_LEVEL} 􀲎 ${LEFT_BATTERY_LEVEL} 􀲍 ${RIGHT_BATTERY_LEVEL}</string>
+				<string>􀹫 CASE_BATTERY_LEVEL 􀲎 LEFT_BATTERY_LEVEL 􀲍 RIGHT_BATTERY_LEVEL</string>
 				<key>required</key>
 				<false/>
 				<key>trim</key>
