@@ -1,23 +1,22 @@
-#!/bin/bash
-SYSTEM_PROFILER=$(system_profiler SPBluetoothDataType 2>/dev/null)
+#!/bin/zsh
 
+SYSTEM_PROFILER=$(system_profiler SPBluetoothDataType 2>/dev/null)
 CONNECTED=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${SYSTEM_PROFILER}" | grep -B4 "Battery Level:")
 
 print_device() {
-    # echo $device
     if [ "$device" != "" ]; then
         CASE_BATTERY_LEVEL=$(echo "${device}" | awk '/Case Battery Level/{print $4}')
         LEFT_BATTERY_LEVEL=$(echo "${device}" | awk '/Left Battery Level/{print $4}')
         RIGHT_BATTERY_LEVEL=$(echo "${device}" | awk '/Right Battery Level/{print $4}')
-        battery="🅛 ${LEFT_BATTERY_LEVEL} 🅡 ${RIGHT_BATTERY_LEVEL} | Case: ${CASE_BATTERY_LEVEL}"
+        battery="${result_title/CASE_BATTERY_LEVEL/$CASE_BATTERY_LEVEL}"
+        battery="${battery/LEFT_BATTERY_LEVEL/$LEFT_BATTERY_LEVEL}"
+        battery="${battery/RIGHT_BATTERY_LEVEL/$RIGHT_BATTERY_LEVEL}"
+
         if [[ "$LEFT_BATTERY_LEVEL" = "" && "$RIGHT_BATTERY_LEVEL" = ""  ]]; then
             battery=$(echo "${device}" | awk '/Battery Level/{print $3}')
         fi
+
         if [[ "$battery" != "" ]]; then
-            ## customize the row as you wish
-            # echo "<item> <subtitle>$battery</subtitle> <title>$name</title> </item>"
-            # echo "<item> <title>$name $battery</title> </item>"
-            # echo "<item> <title>$battery - $name</title> </item>"
             echo "<item> <title>$battery</title> <subtitle>$name</subtitle> </item>"
         fi
     fi
