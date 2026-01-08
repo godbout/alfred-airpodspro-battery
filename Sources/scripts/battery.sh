@@ -8,15 +8,15 @@ print_device() {
         CASE_BATTERY_LEVEL=$(echo "${device}" | awk '/Case Battery Level/{print $4}')
         LEFT_BATTERY_LEVEL=$(echo "${device}" | awk '/Left Battery Level/{print $4}')
         RIGHT_BATTERY_LEVEL=$(echo "${device}" | awk '/Right Battery Level/{print $4}')
-        battery="🅛 ${LEFT_BATTERY_LEVEL} 🅡 ${RIGHT_BATTERY_LEVEL} | Case: ${CASE_BATTERY_LEVEL}"
+        battery="${result_title/CASE_BATTERY_LEVEL/$CASE_BATTERY_LEVEL}"
+        battery="${battery/LEFT_BATTERY_LEVEL/$LEFT_BATTERY_LEVEL}"
+        battery="${battery/RIGHT_BATTERY_LEVEL/$RIGHT_BATTERY_LEVEL}"
+
         if [[ "$LEFT_BATTERY_LEVEL" = "" && "$RIGHT_BATTERY_LEVEL" = ""  ]]; then
             battery=$(echo "${device}" | awk '/Battery Level/{print $3}')
         fi
+
         if [[ "$battery" != "" ]]; then
-            ## customize the row as you wish
-            # echo "<item> <subtitle>$battery</subtitle> <title>$name</title> </item>"
-            # echo "<item> <title>$name $battery</title> </item>"
-            # echo "<item> <title>$battery - $name</title> </item>"
             echo "<item> <title>$battery</title> <subtitle>$name</subtitle> </item>"
         fi
     fi
@@ -33,12 +33,12 @@ if [[ "$COUNT" != "0"  ]]; then
     name=""
     device=""
 
-    CONNECTED="$CONNECTED$nl--" # append a separator to the end 
+    CONNECTED="$CONNECTED$nl--" # append a separator to the end
 
     ## split CONNECTED into devices
 
     echo "${CONNECTED}" | while read -r line
-    do 
+    do
         if [ "$device" = "" ]
             then
             name=${line%?} # remove the colon: at the last place of device name
