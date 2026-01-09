@@ -17,9 +17,9 @@ it's a **SHAMELESS** fork from [AirpodsBattery](https://github.com/BeneathCloud/
 * handles multiple connected AirPods Pro
 * should work with any Apple headphones actually but i'm not rich enough to own them all
 
-# MANDATORY SCREENSHOT
+# BIG MANDATORY SCREENSHOT
 
-![battery](https://raw.githubusercontent.com/godbout/AirpodsBattery/media/alfred-airpodspro-battery.gif "battery")
+![apb](https://github.com/user-attachments/assets/05be2084-e7d3-42aa-b005-034936c42489)
 
 # DOWNLOAD
 
