@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-SYSTEM_PROFILER=$(system_profiler SPBluetoothDataType 2>/dev/null)
-CONNECTED=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${SYSTEM_PROFILER}" | grep -B4 "Battery Level:")
+WHOLE_BLUETOOTH_DATA=$(system_profiler SPBluetoothDataType 2>/dev/null)
+CONNECTED=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${WHOLE_BLUETOOTH_DATA}" | grep -B4 "Battery Level:")
 
 print_device() {
     if [ "$device" != "" ]; then
