@@ -9,7 +9,7 @@
 
 # WHAT IS THAT
 
-it's a **SHAMELESS** fork from [AirpodsBattery](https://github.com/BeneathCloud/AirpodsBattery). the original Workflow didn't work for me. opened an issue before testing a PR but no answer. so here we go. also now updated for Monterey.
+it's a **SHAMELESS** fork from [AirpodsBattery](https://github.com/BeneathCloud/AirpodsBattery). the original Workflow didn't work for me. opened an issue before testing a PR but no answer. so here we go.
 
 # FEATURES
 
