@@ -1,19 +1,16 @@
 #!/bin/zsh
 
-SYSTEM_PROFILER=$(system_profiler SPBluetoothDataType 2>/dev/null)
-CONNECTED=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${SYSTEM_PROFILER}" | grep -B4 "Battery Level:")
-
-print_device() {
-    if [ "$device" != "" ]; then
-        CASE_BATTERY_LEVEL=$(echo "${device}" | awk '/Case Battery Level/{print $4}')
-        LEFT_BATTERY_LEVEL=$(echo "${device}" | awk '/Left Battery Level/{print $4}')
-        RIGHT_BATTERY_LEVEL=$(echo "${device}" | awk '/Right Battery Level/{print $4}')
+function print_headphone_as_alfred_result_item() {
+    if [ "$headphone" != "" ]; then
+        CASE_BATTERY_LEVEL=$(echo "${headphone}" | awk '/Case Battery Level/{print $4}')
+        LEFT_BATTERY_LEVEL=$(echo "${headphone}" | awk '/Left Battery Level/{print $4}')
+        RIGHT_BATTERY_LEVEL=$(echo "${headphone}" | awk '/Right Battery Level/{print $4}')
         battery="${result_title/CASE_BATTERY_LEVEL/$CASE_BATTERY_LEVEL}"
         battery="${battery/LEFT_BATTERY_LEVEL/$LEFT_BATTERY_LEVEL}"
         battery="${battery/RIGHT_BATTERY_LEVEL/$RIGHT_BATTERY_LEVEL}"
 
         if [[ "$LEFT_BATTERY_LEVEL" = "" && "$RIGHT_BATTERY_LEVEL" = ""  ]]; then
-            battery=$(echo "${device}" | awk '/Battery Level/{print $3}')
+            battery=$(echo "${headphone}" | awk '/Battery Level/{print $3}')
         fi
 
         if [[ "$battery" != "" ]]; then
@@ -22,45 +19,43 @@ print_device() {
     fi
 }
 
+WHOLE_BLUETOOTH_DATA=$(system_profiler SPBluetoothDataType 2>/dev/null)
+CONNECTED_HEADPHONES=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${WHOLE_BLUETOOTH_DATA}" | grep -B4 "Battery Level:")
+APPLE_AND_BEATS_CONNECTED_HEADPHONES_COUNT=$(echo $CONNECTED_HEADPHONES | grep -c "Vendor ID: 0x004C")
 
-COUNT=$(echo $CONNECTED | grep -c "Vendor ID: 0x004C")
-
-if [[ "$COUNT" != "0"  ]]; then
-
+if [[ "$APPLE_AND_BEATS_CONNECTED_HEADPHONES_COUNT" != "0"  ]]; then
     echo "<?xml version='1.0' encoding='utf-8'?> <items>" # use XML as it will be easier to print logs to the output into alfred with echo
 
     nl=$'\n'
     name=""
-    device=""
+    headphone=""
 
-    CONNECTED="$CONNECTED$nl--" # append a separator to the end
+    CONNECTED_HEADPHONES="$CONNECTED_HEADPHONES$nl--" # append a separator to the end
 
     ## split CONNECTED into devices
-
-    echo "${CONNECTED}" | while read -r line
+    echo "${CONNECTED_HEADPHONES}" | while read -r line
     do
-        if [ "$device" = "" ]
+        if [ "$headphone" = "" ]
             then
             name=${line%?} # remove the colon: at the last place of device name
-            device="$line"
+            headphone="$line"
         elif [ "$line" = "--" ]
             then
-            print_device # print device battery in XML
-            device=""
+            print_headphone_as_alfred_result_item # print device battery in XML
+            headphone=""
         else
             echo $line
-            device="$device$nl$line" # append more lines to the device
+            headphone="$headphone$nl$line" # append more lines to the device
         fi
     done
 
     echo "</items>"
-
 else
 cat << EOB
     {"items": [
         {
             "uid": "battery",
-            "title": "not connected",
+            "title": "no connected headphones found",
         }
     ]}
 EOB
