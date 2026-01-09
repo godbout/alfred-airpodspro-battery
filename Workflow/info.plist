@@ -148,7 +148,7 @@ head to the [GitHub repo](https://github.com/godbout/alfred-airpodspro-battery).
 				<key>default</key>
 				<string>apb</string>
 				<key>placeholder</key>
-				<string></string>
+				<string>apb</string>
 				<key>required</key>
 				<false/>
 				<key>trim</key>
@@ -157,7 +157,7 @@ head to the [GitHub repo](https://github.com/godbout/alfred-airpodspro-battery).
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Workflow Keyword</string>
+			<string>See your battery levels with</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
@@ -176,9 +176,9 @@ head to the [GitHub repo](https://github.com/godbout/alfred-airpodspro-battery).
 				<true/>
 			</dict>
 			<key>description</key>
-			<string></string>
+			<string>tune how you wanna see your battery levels. use the provided CASE_BATTERY_LEVEL, LEFT_BATTERY_LEVEL and RIGHT_BATTERY_LEVEL placeholders because else what's the point.</string>
 			<key>label</key>
-			<string>Result Title</string>
+			<string>Battery levels formatting</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
