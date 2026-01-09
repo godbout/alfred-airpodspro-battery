@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 WHOLE_BLUETOOTH_DATA=$(system_profiler SPBluetoothDataType 2>/dev/null)
-CONNECTED=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${WHOLE_BLUETOOTH_DATA}" | grep -B4 "Battery Level:")
+CONNECTED_HEADPHONES=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${WHOLE_BLUETOOTH_DATA}" | grep -B4 "Battery Level:")
 
 print_device() {
     if [ "$device" != "" ]; then
@@ -23,7 +23,7 @@ print_device() {
 }
 
 
-COUNT=$(echo $CONNECTED | grep -c "Vendor ID: 0x004C")
+COUNT=$(echo $CONNECTED_HEADPHONES | grep -c "Vendor ID: 0x004C")
 
 if [[ "$COUNT" != "0"  ]]; then
 
@@ -33,11 +33,11 @@ if [[ "$COUNT" != "0"  ]]; then
     name=""
     device=""
 
-    CONNECTED="$CONNECTED$nl--" # append a separator to the end
+    CONNECTED_HEADPHONES="$CONNECTED_HEADPHONES$nl--" # append a separator to the end
 
     ## split CONNECTED into devices
 
-    echo "${CONNECTED}" | while read -r line
+    echo "${CONNECTED_HEADPHONES}" | while read -r line
     do
         if [ "$device" = "" ]
             then
