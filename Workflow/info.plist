@@ -114,15 +114,15 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>## Your Battery
+	<string>## Your Batteries
 
-type `apb` to see the current battery levels of your connected AirPods Pro.
+type `apb` to see the current battery levels of your connected AirPods Pros. the more the better!
 
 ![battery levels](resources/images/apb.png)
 
-## More info?
+## Need more info?
 
-the [GitHub repo](https://github.com/godbout/alfred-airpodspro-battery).</string>
+head to the [GitHub repo](https://github.com/godbout/alfred-airpodspro-battery).</string>
 	<key>uidata</key>
 	<dict>
 		<key>B7BA4CAE-6D7B-4AB6-9A4E-1A0DE1C07BB2</key>
