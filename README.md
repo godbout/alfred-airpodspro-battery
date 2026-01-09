@@ -11,6 +11,12 @@
 
 it's a **SHAMELESS** fork from [AirpodsBattery](https://github.com/BeneathCloud/AirpodsBattery). the original Workflow didn't work for me. opened an issue before testing a PR but no answer. so here we go. also now updated for Monterey.
 
+# FEATURES
+
+* shows the battery levels of your connected AirPods Pro
+* handles multiple connected AirPods Pro
+* should work with any Apple headphones actually but i'm not rich enough to own them all
+
 # MANDATORY SCREENSHOT
 
 ![battery](https://raw.githubusercontent.com/godbout/AirpodsBattery/media/alfred-airpodspro-battery.gif "battery")
