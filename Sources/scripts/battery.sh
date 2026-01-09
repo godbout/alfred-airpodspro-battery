@@ -24,7 +24,6 @@ CONNECTED_HEADPHONES=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<
 APPLE_CONNECTED_HEADPHONES_COUNT=$(echo $CONNECTED_HEADPHONES | grep -c "Vendor ID: 0x004C")
 
 if [[ "$APPLE_CONNECTED_HEADPHONES_COUNT" != "0"  ]]; then
-
     echo "<?xml version='1.0' encoding='utf-8'?> <items>" # use XML as it will be easier to print logs to the output into alfred with echo
 
     nl=$'\n'
@@ -34,7 +33,6 @@ if [[ "$APPLE_CONNECTED_HEADPHONES_COUNT" != "0"  ]]; then
     CONNECTED_HEADPHONES="$CONNECTED_HEADPHONES$nl--" # append a separator to the end
 
     ## split CONNECTED into devices
-
     echo "${CONNECTED_HEADPHONES}" | while read -r line
     do
         if [ "$device" = "" ]
@@ -52,7 +50,6 @@ if [[ "$APPLE_CONNECTED_HEADPHONES_COUNT" != "0"  ]]; then
     done
 
     echo "</items>"
-
 else
 cat << EOB
     {"items": [
