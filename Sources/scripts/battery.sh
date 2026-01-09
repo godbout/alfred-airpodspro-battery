@@ -23,7 +23,7 @@ WHOLE_BLUETOOTH_DATA=$(system_profiler SPBluetoothDataType 2>/dev/null)
 CONNECTED_HEADPHONES=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${WHOLE_BLUETOOTH_DATA}" | grep -B4 "Battery Level:")
 APPLE_AND_BEATS_CONNECTED_HEADPHONES_COUNT=$(echo $CONNECTED_HEADPHONES | grep -c "Vendor ID: 0x004C")
 
-if [[ "$APPLE_AND_BEATS_CONNECTED_HEADPHONES_COUNT" != "0"  ]]; then
+if [[ "$APPLE_AND_BEATS_CONNECTED_HEADPHONES_COUNT" = "0"  ]]; then
     echo "<?xml version='1.0' encoding='utf-8'?> <items>" # use XML as it will be easier to print logs to the output into alfred with echo
 
     nl=$'\n'
@@ -55,7 +55,7 @@ cat << EOB
     {"items": [
         {
             "uid": "battery",
-            "title": "not connected",
+            "title": "no connected headphones found",
         }
     ]}
 EOB
