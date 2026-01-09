@@ -27,7 +27,7 @@
 	<key>createdby</key>
 	<string>Guillaume Leclerc</string>
 	<key>description</key>
-	<string>Shows the battery info of your AirPods Pro</string>
+	<string>Shows the battery levels of your AirPods Pro(s)</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
