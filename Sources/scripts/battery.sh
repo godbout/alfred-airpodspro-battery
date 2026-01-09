@@ -1,9 +1,6 @@
 #!/bin/zsh
 
-WHOLE_BLUETOOTH_DATA=$(system_profiler SPBluetoothDataType 2>/dev/null)
-CONNECTED_HEADPHONES=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${WHOLE_BLUETOOTH_DATA}" | grep -B4 "Battery Level:")
-
-print_device() {
+function print_device() {
     if [ "$device" != "" ]; then
         CASE_BATTERY_LEVEL=$(echo "${device}" | awk '/Case Battery Level/{print $4}')
         LEFT_BATTERY_LEVEL=$(echo "${device}" | awk '/Left Battery Level/{print $4}')
@@ -21,6 +18,10 @@ print_device() {
         fi
     fi
 }
+
+WHOLE_BLUETOOTH_DATA=$(system_profiler SPBluetoothDataType 2>/dev/null)
+CONNECTED_HEADPHONES=$(awk '/  Connected:/{f=1;next} /Not Connected:/{f=0} f' <<< "${WHOLE_BLUETOOTH_DATA}" | grep -B4 "Battery Level:")
+
 
 
 COUNT=$(echo $CONNECTED_HEADPHONES | grep -c "Vendor ID: 0x004C")
