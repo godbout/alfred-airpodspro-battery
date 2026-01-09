@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function print_device() {
+function print_headphone_as_alfred_result_item() {
     if [ "$headphone" != "" ]; then
         CASE_BATTERY_LEVEL=$(echo "${headphone}" | awk '/Case Battery Level/{print $4}')
         LEFT_BATTERY_LEVEL=$(echo "${headphone}" | awk '/Left Battery Level/{print $4}')
@@ -41,7 +41,7 @@ if [[ "$APPLE_CONNECTED_HEADPHONES_COUNT" != "0"  ]]; then
             headphone="$line"
         elif [ "$line" = "--" ]
             then
-            print_device # print device battery in XML
+            print_headphone_as_alfred_result_item # print device battery in XML
             headphone=""
         else
             echo $line
