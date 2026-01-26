@@ -16,6 +16,7 @@ it's a **SHAMELESS** fork from [AirpodsBattery](https://github.com/BeneathCloud/
 * shows the battery levels of your connected AirPods Pro
 * handles multiple connected AirPods Pro
 * should work with any Apple headphones actually but i'm not rich enough to own them all
+* you can customize the Alfred Result to your liking (or disliking)
 
 # BIG MANDATORY SCREENSHOT
 
